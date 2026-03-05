@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Official Portal</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+/* ---------- BASIC RESET ---------- */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+}
+
+/* ---------- ANIMATED BACKGROUND ---------- */
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(20px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* ---------- HEADER ---------- */
+.header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 60px 20px;
+    z-index: 10;
+}
+
+.header img.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+    animation: fadeIn 1s ease forwards;
+}
+
+.header .school-name {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 5px #00ffcc;
+    animation: fadeIn 1s ease forwards 0.3s;
+}
+
+.header h1 {
+    margin-top: 15px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #00ffcc;
+    animation: fadeIn 1s ease forwards 0.6s;
+}
+
+/* ---------- NAV BUTTONS ---------- */
+.nav-buttons {
+    margin-top: 30px;
+    animation: fadeIn 1s ease forwards 0.9s;
+}
+
+.nav-buttons a {
+    text-decoration: none;
+    background: rgba(0, 255, 204, 0.1);
+    color: #00ffcc;
+    padding: 12px 25px;
+    margin: 0 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 10px #00ffcc44;
+    transition: 0.3s;
+}
+
+.nav-buttons a:hover {
+    background: rgba(0, 255, 204, 0.25);
+    box-shadow: 0 0 20px #00ffcc88, 0 0 30px #00ffcc55 inset;
+    transform: translateY(-2px);
+}
+
+/* ---------- CLASS INFO CARD ---------- */
+.class-info {
+    max-width: 600px;
+    margin: 40px auto 60px auto;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00ffcc33;
+    border-radius: 20px;
+    padding: 25px 30px;
+    text-align: center;
+    box-shadow: 0 0 20px #00ffcc22;
+    animation: fadeIn 1s ease forwards 1.2s;
+
+    /* upgrade */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.class-info:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 35px #00ffcc66;
+}
+
+.class-info h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #00ffcc;
+}
+
+.class-info p {
+    font-size: 16px;
+    margin: 6px 0;
+    color: #ccffee;
+}
+
+/* ---------- FADE IN ANIMATION ---------- */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ---------- PARTICLES ---------- -->
+<div class="particle" style="width:12px; height:12px; top:20%; left:10%; background:#00ffcc; animation-duration:20s;"></div>
+<div class="particle" style="width:8px; height:8px; top:50%; left:80%; background:#00ffcc; animation-duration:15s;"></div>
+<div class="particle" style="width:10px; height:10px; top:70%; left:30%; background:#00ffcc; animation-duration:25s;"></div>
+<div class="particle" style="width:6px; height:6px; top:30%; left:60%; background:#00ffcc; animation-duration:18s;"></div>
+<div class="particle" style="width:14px; height:14px; top:10%; left:70%; background:#00ffcc; animation-duration:22s;"></div>
+<div class="particle" style="width:15x; height:15px; top:50%; left:40%; background:#00ffcc; animation-duration:20s;"></div>
+
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <p class="school-name">Aminiya School</p>
+    <h1>10B3 Official Portal</h1>
+    <div class="nav-buttons">
+        <a href="student.html">Student List</a>
+        <a href="timetable.html">Timetable</a>
+    </div>
+</div>
+
+<div class="class-info">
+    <h2>Details</h2>
+    <p><strong>School :</strong> Aminiya School</p>
+    <p><strong>School Year:</strong> 2026</p>
+    <p><strong>Class Teacher:</strong> Ms. Fathimath Nasma</p>
+    <p><strong>Total Students:</strong> 32 Students</p>
+    <p><strong>Quote:</strong> "The future belongs to those who prepare for it today." – Malcolm X</p>
+</div>
+
+</body>
+</html>
