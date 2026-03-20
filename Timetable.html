@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Class Timetable</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+/* ---------- BODY & BACKGROUND ---------- */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* ---------- PARTICLES ---------- */
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(20px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* ---------- HEADER ---------- */
+.header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 60px 20px;
+    z-index: 10;
+    animation: fadeIn 1s ease forwards;
+}
+
+.header img.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+    animation: fadeIn 1s ease forwards 0.3s;
+}
+
+.header .school-name {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 5px #00ffcc;
+    animation: fadeIn 1s ease forwards 0.6s;
+}
+
+.header h1 {
+    margin-top: 15px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #00ffcc;
+    animation: fadeIn 1s ease forwards 0.9s;
+}
+
+/* ---------- TIMETABLE CARD ---------- */
+.timetable-card {
+    max-width: 900px;
+    margin: 40px auto 60px auto;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00ffcc33;
+    border-radius: 20px;
+    padding: 25px 30px;
+    box-shadow: 0 0 20px #00ffcc22;
+    animation: fadeIn 1s ease forwards 1.2s;
+    overflow-x: auto;
+}
+
+.timetable-card h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #00ffcc;
+}
+
+/* ---------- TABLE ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #00ffcc33;
+}
+
+th {
+    background: rgba(0,255,204,0.1);
+    color: #00ffcc;
+    position: sticky;
+    top: 0;
+}
+
+tbody tr:hover {
+    background: rgba(0,255,204,0.15);
+}
+
+/* Nested table for multi-subject cells */
+.inner-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.inner-table td {
+    border: 1px solid #00ffcc33;
+    padding: 2px;
+    font-size: 12px;
+}
+
+/* ---------- FADE IN ANIMATION ---------- */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(-20px);}
+    100% { opacity: 1; transform: translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ---------- PARTICLES ---------- -->
+<div class="particle" style="width:12px; height:12px; top:20%; left:10%; background:#00ffcc; animation-duration:20s;"></div>
+<div class="particle" style="width:8px; height:8px; top:50%; left:80%; background:#00ffcc; animation-duration:15s;"></div>
+<div class="particle" style="width:10px; height:10px; top:70%; left:30%; background:#00ffcc; animation-duration:25s;"></div>
+<div class="particle" style="width:6px; height:6px; top:30%; left:60%; background:#00ffcc; animation-duration:18s;"></div>
+<div class="particle" style="width:14px; height:14px; top:10%; left:50%; background:#00ffcc; animation-duration:22s;"></div>
+<div class="particle" style="width:15px; height:15px; top:50%; left:40%; background:#00ffcc; animation-duration:20s;"></div>
+
+<!-- ---------- HEADER ---------- -->
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <p class="school-name">Aminiya School</p>
+    <h1>10B3 Class Timetable</h1>
+    <p><strong>Class Teacher:</strong> Ms. Fathimath Nasma | <strong>Contact:</strong> 9880708</p>
+</div>
+
+<!-- ---------- TIMETABLE CARD ---------- -->
+<div class="timetable-card">
+    <h2>Class Timetable</h2>
+    <table class="timetable">
+        <thead>
+            <tr>
+                <td colspan="6" style="font-weight:bold; font-size:18px;">10B3</td>
+            </tr>
+            <tr>
+                <th>Time</th>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>8:30 - 8:30</td>
+                <td colspan="6" style="font-weight:bold;">Student Arrival</td>
+            </tr>
+            <tr>
+                <td>8:30 - 8:40</td>
+                <td colspan="6" style="font-weight:bold;">Assembly</td>
+            </tr>
+            <tr>
+                <td>8:40 - 9:10</td>
+                <td>ISL</td>
+                <td>ECON</td>
+                <td>BUSS</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>Math</td><td>Core</td></tr>
+                        <tr><td>Math</td><td>EXT</td></tr>
+                    </table>
+                </td>
+                <td>ACCT</td>
+            </tr>
+            <tr>
+                <td>9:10 - 9:40</td>
+                <td>ENG</td>
+                <td>DHI</td>
+                <td>QUR</td>
+                <td>DHI</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>Math</td><td>Core</td></tr>
+                        <tr><td>Math</td><td>EXT</td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>9:40 - 10:10</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>Math</td><td>Core</td></tr>
+                        <tr><td>Math</td><td>EXT</td></tr>
+                    </table>
+                </td>
+                <td>BUSS</td>
+                <td>ISL</td>
+                <td>ACCT</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>ART</td><td>COMP</td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>10:10 - 10:20</td>
+                <td colspan="6" style="font-weight:bold;">Break</td>
+            </tr>
+            <tr>
+                <td>10:20 - 10:50</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>ART</td><td>COMP</td></tr>
+                    </table>
+                </td>
+                <td>ENG</td>
+                <td>ECON</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>ART</td><td>COMP</td></tr>
+                    </table>
+                </td>
+                <td>DHI</td>
+            </tr>
+            <tr>
+                <td>10:50 - 11:20</td>
+                <td>BUSS</td>
+                <td>QUR</td>
+                <td>ACCT</td>
+                <td>ECON</td>
+                <td>ISL</td>
+            </tr>
+            <tr>
+                <td>11:30 - 11:30</td>
+                <td colspan="6" style="font-weight:bold;">Dismissal</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
