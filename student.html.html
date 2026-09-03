@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Official Portal</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(20px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+.header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 60px 20px;
+    z-index: 10;
+}
+
+.header img.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+}
+
+.header .school-name {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 5px #00ffcc;
+}
+
+.header h1 {
+    margin-top: 15px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+.admin-badge {
+    background: gold;
+    color: black;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.custom {
+    background: white;
+    color: black;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.monitor-badge {
+    background: lightgreen;
+    color: black;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.class-info {
+    max-width: 900px;
+    margin: 40px auto 60px auto;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00ffcc33;
+    border-radius: 20px;
+    padding: 25px 30px;
+    text-align: center;
+    box-shadow: 0 0 20px #00ffcc22;
+    overflow-x: auto;
+}
+
+.class-info h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #00ffcc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #00ffcc33;
+}
+
+th {
+    background: rgba(0,255,204,0.1);
+    color: #00ffcc;
+    position: sticky;
+    top: 0;
+}
+
+tbody tr:hover {
+    background: rgba(0,255,204,0.15);
+}
+
+.male, .female {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+
+.male { background: #007bff; }
+.female { background: #ff69b4; }
+
+</style>
+</head>
+
+<body>
+
+<!-- PARTICLES -->
+<div class="particle" style="width:12px; height:12px; top:20%; left:10%; background:#00ffcc; animation-duration:20s;"></div>
+<div class="particle" style="width:8px; height:8px; top:50%; left:80%; background:#00ffcc; animation-duration:15s;"></div>
+<div class="particle" style="width:10px; height:10px; top:70%; left:30%; background:#00ffcc; animation-duration:25s;"></div>
+<div class="particle" style="width:6px; height:6px; top:30%; left:60%; background:#00ffcc; animation-duration:18s;"></div>
+<div class="particle" style="width:14px; height:14px; top:10%; left:50%; background:#00ffcc; animation-duration:22s;"></div>
+<div class="particle" style="width:15px; height:15px; top:50%; left:40%; background:#00ffcc; animation-duration:20s;"></div>
+
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <p class="school-name">Aminiya School</p>
+    <h1>10B3 Student List</h1>
+</div>
+
+<div class="class-info">
+    <h2>Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Register No</th>
+                <th>Name</th>
+                <th>Index No</th>
+                <th>Birth Date</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="Affan_Fayaz"><td>01</td><td>Affan Fayaz</td><td>20577</td><td>15/03/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Aishath_Aiza_Ahmed"><td>02</td><td>Aishath Aiza Ahmed</td><td>20452</td><td>18/09/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Aishath_Insha_Adam"><td>03</td><td>Aishath Insha Adam</td><td>22770</td><td>29/03/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Aishath_Malak_Fayaz"><td>04</td><td>Aishath Malak Fayaz</td><td>20453</td><td>27/09/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Aminath_Aala_Ali"><td>05</td><td>Aminath Aala Ali</td><td>24050</td><td>07/12/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Aminath_Mishka_Binth_Abdulla_Mohamed"><td>06</td><td>Aminath Mishka Binth Abdulla Mohamed</td><td>21376</td><td>07/12/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Aym_Ahmed_Hameed"><td>07</td><td>Aym Ahmed Hameed</td><td>22242</td><td>01/11/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Eeshal_Ahmed_Akmal"><td>08</td><td>Eeshal Ahmed Akmal <span class="monitor-badge">👩 Monitor</span></td><td>20503</td><td>25/12/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Ensha_Ahmed_Sameer"><td>09</td><td>Ensha Ahmed Sameer</td><td>21328</td><td>18/12/2011</td><td><span class="female"></span></td></tr>
+            <tr id="Fathimath_Laara_Farish"><td>10</td><td>Fathimath Laara Farish</td><td>20504</td><td>20/02/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Ibrahim_Yashal_Hussain"><td>11</td><td>Ibrahim Yashal Hussain</td><td>20603</td><td>11/05/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Izaan_Abdul_Azeez_Abdul_Latheef"><td>12</td><td>Izaan Abdul Azeez Abdul Latheef</td><td>20492</td><td>18/12/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Mariyam_Manha_Mufeed"><td>13</td><td>Mariyam Manha Mufeed</td><td>22885</td><td>19/01/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Mohamed_Azeen_Zahir"><td>14</td><td>Mohamed Azeen Zahir</td><td>20323</td><td>13/01/2011</td><td><span class="male"></span></td></tr>
+            <tr id="Zara_Mohamed_Fahumy"><td>15</td><td>Zara Mohamed Fahumy</td><td>20393</td><td>07/09/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Ahmed_Shaamin"><td>16</td><td>Ahmed Shaamin</td><td>20371</td><td>29/03/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Ali_Naaish_Moosa"><td>17</td><td>Ali Naaish Moosa <span class="monitor-badge">👨 Monitor</span></td><td>20947</td><td>12/06/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Andrian_Joel_Cooray"><td>18</td><td>Andrian Joel Cooray <span class="admin-badge">👑 Developer</span></td><td>23285</td><td>27/05/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Aylin_Mausoom_Saleem"><td>19</td><td>Aylin Mausoom Saleem</td><td>20563</td><td>16/09/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Azan_Ahmed_Zameen"><td>20</td><td>Azan Ahmed Zameen</td><td>20490</td><td>21/08/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Daniya_Abdul_Qadir"><td>21</td><td>Daniya Abdul Qadir</td><td>20410</td><td>20/04/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Eelaaf_ALi"><td>22</td><td>Eelaaf Ali</td><td>23186</td><td>21/04/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Hussain_Naizak"><td>23</td><td>Hussain Naizak</td><td>20397</td><td>17/03/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Ibrahim_Raaif"><td>24</td><td>Ibrahim Raaif</td><td>23579</td><td>07/08/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Insha_Irufaan_Rahseed"><td>25</td><td>Insha Irufaan Rahseed</td><td>20654</td><td>25/02/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Jiya_Ahmed"><td>26</td><td>Jiya Ahmed</td><td>20387</td><td>15/10/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Maal_Ibrahim"><td>27</td><td>Maal Ibrahim</td><td>20349</td><td>13/10/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Mohamed_Silm_Bin_Fardheen"><td>28</td><td>Mohamed Silm Bin Fardheen</td><td>22205</td><td>03/06/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Mojil_Maharjan"><td>29</td><td>Mojil Maharjan <span class="custom">🫂 Bestie</span></td><td>22351</td><td>26/07/2011</td><td><span class="male"></span></td></tr>
+            <tr id="Raaniya_Binthi_Rafiq"><td>30</td><td>Raaniya Binthi Rafiq</td><td>21709</td><td>17/07/2010</td><td><span class="female"></span></td></tr>
+            <tr id="Yameen_Yoosuf_Adam"><td>31</td><td>Yameen Yoosuf Adam</td><td>20472</td><td>25/03/2010</td><td><span class="male"></span></td></tr>
+            <tr id="Yazin_Thariq_Ahmed"><td>32</td><td>Yazin Thariq Ahmed</td><td>24020</td><td>04/08/2010</td><td><span class="male"></span></td></tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
