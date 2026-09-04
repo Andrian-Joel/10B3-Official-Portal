@@ -104,9 +104,9 @@ table {
 }
 
 th, td {
-    padding: 10px;
+    padding: 15px;
     text-align: center;
-    border-bottom: 1px solid #00ffcc33;
+    border-bottom: 2px solid #00ffcc33;
 }
 
 th {
@@ -127,7 +127,7 @@ tbody tr:hover {
 }
 
 .inner-table td {
-    border: 1px solid #00ffcc33;
+    border: 2px solid #00ffcc33;
     padding: 2px;
     font-size: 12px;
 }
@@ -136,6 +136,27 @@ tbody tr:hover {
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(-20px);}
     100% { opacity: 1; transform: translateY(0);}
+}
+
+/* ---------- BACK BUTTON ---------- */
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    text-decoration: none;
+    background: rgba(0, 255, 204, 0.1);
+    color: #00ffcc;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 10px #00ffcc44;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(0, 255, 204, 0.25);
+    box-shadow: 0 0 20px #00ffcc88, 0 0 30px #00ffcc55 inset;
+    transform: translateY(-2px);
 }
 </style>
 </head>
@@ -194,56 +215,61 @@ tbody tr:hover {
                 </td>
                 <td>BUSS</td>
                 <td>ACCT</td>
-                <td>BUSS</td>
                 <td>
                     <table class="inner-table">
-                        <tr><td>Math</td><td>Core</td></tr>
-                        <tr><td>Math</td><td>EXT</td></tr>
+                        <tr><td>MATH EXT</td><td>MATH CORE</td></tr>
                     </table>
                 </td>
-                <td>ACCT</td>
+                <td>ENG</td>
             </tr>
             <tr>
                 <td>8:00 - 8:30</td>
-                <td>ENG</td>
-                <td>DHI</td>
-                <td>QUR</td>
-                <td>DHI</td>
                 <td>
                     <table class="inner-table">
-                        <tr><td>Math</td><td>Core</td></tr>
-                        <tr><td>Math</td><td>EXT</td></tr>
+                        <tr><td>MATH EXT</td><td>MATH CORE</td></tr>
                     </table>
                 </td>
-            </tr>
-            <tr>
-                <td>9:40 - 10:10</td>
-                <td>
-                    <table class="inner-table">
-                        <tr><td>Math</td><td>Core</td></tr>
-                        <tr><td>Math</td><td>EXT</td></tr>
-                    </table>
-                </td>
-                <td>BUSS</td>
-                <td>ISL</td>
-                <td>ACCT</td>
                 <td>
                     <table class="inner-table">
                         <tr><td>ART</td><td>COMP</td></tr>
                     </table>
                 </td>
+                <td>ACCT</td>
+                <td>ISL</td>
+                <td>ENG</td>
             </tr>
             <tr>
-                <td>10:10 - 10:20</td>
+                <td>8:30 - 9:00</td>
+                <td>ECON</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>ART</td><td>COMP</td></tr>
+                    </table>
+                </td>
+                <td>ISL</td>
+                <td>DHI</td>
+                <td>ECON</td>
+            </tr>
+            <tr>
+                <td>9:00 - 9:30</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>ART</td><td>COMP</td></tr>
+                    </table>
+                </td>
+                <td>ACCT</td>
+                <td>BUSS</td>
+                <td>ACCT</td>
+                <td>LIB
+            <tr>
+                <td>9:30 - 9:45</td>
                 <td colspan="6" style="font-weight:bold;">Break</td>
             </tr>
+            
             <tr>
-                <td>10:20 - 10:50</td>
-                <td>
-                    <table class="inner-table">
-                        <tr><td>ART</td><td>COMP</td></tr>
-                    </table>
-                </td>
+                <td>9:45 - 10:20</td>
+                <td>ACCT</td>
+                <td>DHI</td>
                 <td>ENG</td>
                 <td>ECON</td>
                 <td>
@@ -251,19 +277,54 @@ tbody tr:hover {
                         <tr><td>ART</td><td>COMP</td></tr>
                     </table>
                 </td>
+            </tr>
+            <tr>
+                <td>10:20 - 10:55</td>
+                <td>ENG</td>
+                <td>DHI</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>MATH EXT</td><td>MATH CORE</td></tr>
+                    </table>
+                </td>
+                <td>QUR</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>ART</td><td>COMP</td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>10:55 - 11:30</td>
+                <td>BUSS</td>
+                <td>QUR</td>
+                <td>
+                    <table class="inner-table">
+                        <tr><td>MATH EXT</td><td>MATH CORE</td></tr>
+                    </table>
+                </td>
+                <td>BUSS</td>
                 <td>DHI</td>
             </tr>
             <tr>
-                <td>10:50 - 11:20</td>
-                <td>BUSS</td>
-                <td>QUR</td>
-                <td>ACCT</td>
+                <td>11:45 - 11:45</td>
+                <td colspan="6" style="font-weight:bold;">Dissmissal | Grade 6</td>
+            </tr>
+            <tr>
+                <td>11:30 - 12:05</td>
+                <td>ISL</td>
                 <td>ECON</td>
+                <td>ECON</td>
+                <td>BUSS</td>
                 <td>ISL</td>
             </tr>
             <tr>
-                <td>11:30 - 11:30</td>
-                <td colspan="6" style="font-weight:bold;">Dismissal</td>
+                <td>12:15 - 12:15</td>
+                <td colspan="6" style="font-weight:bold;">Dismissal | Grade 7 & 8</td>
+            </tr>
+            <tr>
+                <td>12:25 - 12:25</td>
+                <td colspan="6" style="font-weight:bold;">Dismissal | Grade 9 & 10</td>
             </tr>
         </tbody>
     </table>
