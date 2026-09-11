@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Profile</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles linear infinite;
+}
+@keyframes floatParticles {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(20px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+.header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+    z-index: 10;
+}
+.header img.logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+}
+.header h1 {
+    margin-top: 12px;
+    font-size: 28px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+.container {
+    max-width: 600px;
+    margin: 20px auto 40px auto;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid #00ffcc33;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 25px #00ffcc22;
+}
+.section {
+    margin-bottom: 25px;
+}
+.section h3 {
+    color: #00ffcc;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #ccffee;
+}
+input, textarea, select {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid #00ffcc55;
+    background: rgba(0, 255, 204, 0.08);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+}
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+.color-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.color-row input[type="color"] {
+    width: 50px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    background: none;
+}
+.btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(0, 255, 204, 0.15);
+    color: #00ffcc;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 12px #00ffcc44;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+.btn:hover {
+    background: rgba(0, 255, 204, 0.3);
+    box-shadow: 0 0 20px #00ffcc88;
+}
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ccc;
+    border: 1px solid #666;
+    margin-top: 12px;
+}
+.message {
+    margin-top: 12px;
+    font-size: 14px;
+    text-align: center;
+}
+.success { color: #00ffcc; }
+.error { color: #ff6b6b; }
+
+.social-item {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.social-item select {
+    width: 130px;
+    margin-bottom: 0;
+}
+.social-item input {
+    flex: 1;
+    margin-bottom: 0;
+}
+.social-item .remove-btn {
+    background: rgba(255, 80, 80, 0.2);
+    border: 1px solid #ff5050;
+    color: #ff8a8a;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-social-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px dashed #00ffcc66;
+    background: rgba(0, 255, 204, 0.08);
+    color: #00ffcc;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 8px;
+}
+.add-social-btn:hover {
+    background: rgba(0, 255, 204, 0.18);
+}
+
+.version-badge {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(0, 255, 204, 0.12);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 0 12px #00ffcc55;
+}
+.footer {
+    margin-top: auto;
+    padding: 25px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.45);
+    border-top: 1px solid #00ffcc33;
+    color: #ccffee;
+    font-size: 14px;
+}
+.footer .copyright {
+    color: #00ffcc;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 6px;
+    position: relative;
+    background: rgba(0, 255, 204, 0.1);
+    vertical-align: middle;
+}
+.help-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 20, 30, 0.95);
+    border: 1px solid #00ffcc;
+    color: #ccffee;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 0 12px #00ffcc44;
+}
+.help-icon:hover .help-tooltip,
+.help-icon.active .help-tooltip {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="version-badge">Version 2.1</div>
+
+<!-- Particles -->
+<div class="particle" style="width:12px; height:12px; top:15%; left:10%; background:#00ffcc; animation-duration:20s;"></div>
+<div class="particle" style="width:8px; height:8px; top:60%; left:85%; background:#00ffcc; animation-duration:15s;"></div>
+<div class="particle" style="width:10px; height:10px; top:40%; left:20%; background:#00ffcc; animation-duration:25s;"></div>
+
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <h1>My Profile</h1>
+</div>
+
+<div class="container" id="profileBox" style="display:none;">
+    
+    <div class="section">
+        <h3>Basic Info</h3>
+        <p id="displayName" style="font-size:18px; margin-bottom:5px;"></p>
+        <p id="displayIndex" style="color:#aaa; font-size:14px;"></p>
+    </div>
+
+    <div class="section">
+        <h3>
+            Custom Tag
+            <span class="help-icon" onclick="this.classList.toggle('active')">?
+                <span class="help-tooltip">This tag will appear next to your name in the Student List</span>
+            </span>
+        </h3>
+        <label>Tag Text (max 12 characters)</label>
+        <input type="text" id="tag" maxlength="12" placeholder="e.g. Developer, Monitor...">
+        
+        <label>
+            Tag Color
+            <span class="help-icon" onclick="this.classList.toggle('active')">?
+                <span class="help-tooltip">Choose the color of your custom tag</span>
+            </span>
+        </label>
+        <div class="color-row">
+            <input type="color" id="tagColor" value="#00ffcc">
+            <span style="font-size:14px;">
+                Preview: <span id="colorPreview" style="font-weight:bold;">Tag</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Bio</h3>
+        <textarea id="bio" placeholder="Write something about yourself..."></textarea>
+    </div>
+
+    <div class="section">
+        <h3>
+            Social Links
+            <span class="help-icon" onclick="this.classList.toggle('active')">?
+                <span class="help-tooltip">Only real links starting with https:// are allowed</span>
+            </span>
+        </h3>
+        
+        <div id="socialsContainer"></div>
+        
+        <button class="add-social-btn" id="addSocialBtn" onclick="addSocial()">+ Add Social</button>
+    </div>
+
+    <button class="btn" onclick="saveProfile()">Save Changes</button>
+    <button class="btn btn-secondary" onclick="goToPublicProfile()">← Back to My Public Profile</button>
+
+    <div class="message" id="message"></div>
+</div>
+
+<footer class="footer">
+    <div class="copyright">© 2026 10B3 Official Portal. All Rights Reserved.</div>
+    <div class="credits">Developed by Andrian Joel Cooray</div>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCM2r1g5WZz7ksVFqqWVU-R8_SQtbq8wqc",
+  authDomain: "b3-portal.firebaseapp.com",
+  projectId: "b3-portal",
+  storageBucket: "b3-portal.firebasestorage.app",
+  messagingSenderId: "749208918769",
+  appId: "1:749208918769:web:21d6dac4803d26d005a750"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+let currentUser = null;
+let userData = null;
+
+const allPlatforms = ["discord", "instagram", "tiktok", "snapchat", "roblox"];
+
+const badWords = ["fuck", "shit", "bitch", "asshole", "nigger", "faggot", "cunt", "dick", "pussy", "slut", "whore"];
+
+function containsBadWord(text) {
+  if (!text) return false;
+  return badWords.some(word => text.toLowerCase().includes(word));
+}
+
+function isValidUrl(string) {
+  if (!string) return true;
+  try {
+    const url = new URL(string);
+    return url.protocol === "https:" || url.protocol === "http:";
+  } catch (_) {
+    return false;
+  }
+}
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    alert("You must login first");
+    window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+  const docSnap = await getDoc(doc(db, "users", user.uid));
+
+  if (!docSnap.exists()) {
+    alert("User data not found");
+    window.location.href = "login.html";
+    return;
+  }
+
+  userData = docSnap.data();
+
+  if (userData.accountType !== "student" || !userData.index) {
+    alert("Only students can edit a profile.");
+    window.location.href = "index.html";
+    return;
+  }
+
+  // Convert old format to new format if needed
+  if (!userData.socialList) {
+    userData.socialList = [];
+    if (userData.socials) {
+      const order = userData.socialOrder || allPlatforms;
+      order.forEach(platform => {
+        if (userData.socials[platform]) {
+          userData.socialList.push({
+            platform: platform,
+            link: userData.socials[platform]
+          });
+        }
+      });
+    }
+  }
+
+  loadProfile();
+  document.getElementById("profileBox").style.display = "block";
+});
+
+function updateColorPreview() {
+  const color = document.getElementById("tagColor").value;
+  const tagText = document.getElementById("tag").value.trim() || "Tag";
+  const preview = document.getElementById("colorPreview");
+  preview.style.color = color;
+  preview.textContent = tagText;
+}
+
+function loadProfile() {
+  document.getElementById("displayName").textContent = userData.fullname;
+  document.getElementById("displayIndex").textContent = "Index: " + userData.index;
+
+  document.getElementById("tag").value = userData.tag || "";
+  document.getElementById("tagColor").value = userData.tagColor || "#00ffcc";
+  document.getElementById("bio").value = userData.bio || "";
+
+  document.getElementById("tagColor").addEventListener("input", updateColorPreview);
+  document.getElementById("tag").addEventListener("input", updateColorPreview);
+
+  updateColorPreview();
+  renderSocials();
+}
+
+function getAvailablePlatforms() {
+  const used = userData.socialList.map(s => s.platform);
+  return allPlatforms.filter(p => !used.includes(p));
+}
+
+function renderSocials() {
+  const container = document.getElementById("socialsContainer");
+  container.innerHTML = "";
+
+  userData.socialList.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "social-item";
+    div.innerHTML = `
+      <select onchange="changePlatform(${index}, this.value)">
+        ${allPlatforms.map(p => 
+          `<option value="${p}" ${item.platform === p ? "selected" : ""} ${getAvailablePlatforms().includes(p) || item.platform === p ? "" : "disabled"}>${p.charAt(0).toUpperCase() + p.slice(1)}</option>`
+        ).join("")}
+      </select>
+      <input type="url" placeholder="https://..." value="${item.link || ""}" 
+             onchange="updateLink(${index}, this.value)">
+      <button class="remove-btn" onclick="removeSocial(${index})">×</button>
+    `;
+    container.appendChild(div);
+  });
+
+  // Hide add button if 5 socials already
+  const addBtn = document.getElementById("addSocialBtn");
+  addBtn.style.display = userData.socialList.length >= 5 ? "none" : "block";
+}
+
+window.addSocial = function() {
+  if (userData.socialList.length >= 5) return;
+
+  const available = getAvailablePlatforms();
+  if (available.length === 0) return;
+
+  userData.socialList.push({
+    platform: available[0],
+    link: ""
+  });
+
+  renderSocials();
+};
+
+window.changePlatform = function(index, newPlatform) {
+  // Check if already used
+  const alreadyUsed = userData.socialList.some((s, i) => i !== index && s.platform === newPlatform);
+  if (alreadyUsed) {
+    alert("This platform is already added");
+    renderSocials();
+    return;
+  }
+  userData.socialList[index].platform = newPlatform;
+  renderSocials();
+};
+
+window.updateLink = function(index, value) {
+  userData.socialList[index].link = value.trim();
+};
+
+window.removeSocial = function(index) {
+  userData.socialList.splice(index, 1);
+  renderSocials();
+};
+
+window.saveProfile = async function() {
+  const tag = document.getElementById("tag").value.trim();
+  const tagColor = document.getElementById("tagColor").value;
+  const bio = document.getElementById("bio").value.trim();
+  const message = document.getElementById("message");
+
+  if (containsBadWord(tag) || containsBadWord(bio)) {
+    message.textContent = "Inappropriate language is not allowed";
+    message.className = "message error";
+    return;
+  }
+
+  // Validate links
+  for (let item of userData.socialList) {
+    if (item.link && !isValidUrl(item.link)) {
+      message.textContent = `Invalid link for ${item.platform}. Use a full URL starting with https://`;
+      message.className = "message error";
+      return;
+    }
+  }
+
+  // Convert to old format for compatibility with view-profile
+  const socials = {};
+  const socialOrder = [];
+  userData.socialList.forEach(item => {
+    if (item.link) {
+      socials[item.platform] = item.link;
+      socialOrder.push(item.platform);
+    }
+  });
+
+  try {
+    await updateDoc(doc(db, "users", currentUser.uid), {
+      tag: tag,
+      tagColor: tagColor,
+      bio: bio,
+      socials: socials,
+      socialOrder: socialOrder,
+      socialList: userData.socialList
+    });
+
+    message.textContent = "Profile saved successfully!";
+    message.className = "message success";
+  } catch (error) {
+    console.error(error);
+    message.textContent = "Error saving profile: " + error.message;
+    message.className = "message error";
+  }
+};
+
+window.goToPublicProfile = function() {
+  if (userData && userData.index) {
+    window.location.href = `view-profile.html?index=${userData.index}`;
+  } else {
+    window.location.href = "student list.html";
+  }
+};
+</script>
+
+</body>
+</html>
