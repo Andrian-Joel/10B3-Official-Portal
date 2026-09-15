@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Login</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+    min-height: 100vh;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(20px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+.header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 30px 20px;
+    z-index: 10;
+}
+
+.header img.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+}
+
+.header .school-name {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 5px #00ffcc;
+}
+
+.header h1 {
+    margin-top: 15px;
+    font-size: 32px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+.form-card {
+    max-width: 400px;
+    margin: 20px auto 60px auto;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid #00ffcc33;
+    border-radius: 20px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 0 25px #00ffcc22;
+}
+
+.form-card h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #00ffcc;
+}
+
+.input-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #ccffee;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #00ffcc55;
+    background: rgba(0, 255, 204, 0.08);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    border-color: #00ffcc;
+    box-shadow: 0 0 12px #00ffcc55;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(0, 255, 204, 0.15);
+    color: #00ffcc;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 12px #00ffcc44;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: rgba(0, 255, 204, 0.3);
+    box-shadow: 0 0 20px #00ffcc88;
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.switch-link, .back-link {
+    display: block;
+    margin-top: 18px;
+    color: #00ffcc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.switch-link:hover, .back-link:hover {
+    text-shadow: 0 0 8px #00ffcc;
+}
+
+.message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ff6b6b;
+}
+
+/* ---------- VERSION BADGE ---------- */
+.version-badge {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+
+    padding: 8px 16px;
+    border-radius: 50px;
+
+    background: rgba(0, 255, 204, 0.12);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 12px #00ffcc55;
+
+    transition: all 0.3s ease;
+}
+
+.version-badge:hover {
+    background: rgba(0, 255, 204, 0.25);
+    box-shadow: 0 0 20px #00ffcc88;
+    transform: translateY(-2px);
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    margin-top: 80px;
+    padding: 25px 20px;
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+
+    border-top: 1px solid #00ffcc33;
+    box-shadow: 0 -5px 25px #00ffcc11;
+
+    color: #ccffee;
+    font-size: 14px;
+}
+
+.footer .copyright {
+    color: #00ffcc;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.footer .credits {
+    color: #99bfb5;
+    font-size: 12px;
+}
+
+/* Help Icon */
+.help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 6px;
+    position: relative;
+    background: rgba(0, 255, 204, 0.1);
+    vertical-align: middle;
+}
+
+.help-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 20, 30, 0.95);
+    border: 1px solid #00ffcc;
+    color: #ccffee;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 0 12px #00ffcc44;
+}
+
+.help-icon:hover .help-tooltip,
+.help-icon.active .help-tooltip {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="version-badge">
+    Version 2.1
+</div>
+
+
+<!-- Particles -->
+<div class="particle" style="width:12px; height:12px; top:20%; left:10%; background:#00ffcc; animation-duration:20s;"></div>
+<div class="particle" style="width:8px; height:8px; top:50%; left:80%; background:#00ffcc; animation-duration:15s;"></div>
+<div class="particle" style="width:10px; height:10px; top:70%; left:30%; background:#00ffcc; animation-duration:25s;"></div>
+<div class="particle" style="width:6px; height:6px; top:30%; left:60%; background:#00ffcc; animation-duration:18s;"></div>
+<div class="particle" style="width:14px; height:14px; top:10%; left:70%; background:#00ffcc; animation-duration:22s;"></div>
+
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <p class="school-name">Aminiya School</p>
+    <h1>10B3 Login</h1>
+</div>
+
+<div class="form-card">
+    <h2>
+    Login
+    <span class="help-icon" onclick="this.classList.toggle('active')">?
+        <span class="help-tooltip">Use the email and password you signed up with</span>
+    </span>
+</h2>
+
+    <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+    </div>
+
+    <button class="btn" id="loginBtn" onclick="login()">Login</button>
+
+    <div class="message" id="message"></div>
+
+    <a href="signup.html" class="switch-link">Don't have an account? Sign Up</a>
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCM2r1g5WZz7ksVFqqWVU-R8_SQtbq8wqc",
+  authDomain: "b3-portal.firebaseapp.com",
+  projectId: "b3-portal",
+  storageBucket: "b3-portal.firebasestorage.app",
+  messagingSenderId: "749208918769",
+  appId: "1:749208918769:web:21d6dac4803d26d005a750"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.login = async function() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const message = document.getElementById("message");
+  const btn = document.getElementById("loginBtn");
+
+  message.textContent = "";
+  btn.disabled = true;
+  btn.textContent = "Logging in...";
+
+  if (!email || !password) {
+    message.textContent = "Please enter email and password";
+    btn.disabled = false;
+    btn.textContent = "Login";
+    return;
+  }
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Get student info
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+
+    if (userDoc.exists()) {
+  const data = userDoc.data();
+  alert("Welcome back, " + data.fullname + "!");
+} else {
+  alert("Login successful!");
+}
+
+// Always redirect to main page after login
+window.location.href = "index.html";
+
+  } catch (error) {
+    console.error(error);
+    if (error.code === "auth/user-not-found" || 
+        error.code === "auth/wrong-password" || 
+        error.code === "auth/invalid-credential") {
+      message.textContent = "Wrong email or password";
+    } else {
+      message.textContent = error.message;
+    }
+    btn.disabled = false;
+    btn.textContent = "Login";
+  }
+};
+</script>
+
+<footer class="footer">
+    <div class="copyright">
+        © 2026 10B3 Official Portal. All Rights Reserved.
+    </div>
+
+    <div class="credits">
+        Developed by Andrian Joel Cooray
+    </div>
+</footer>
+
+</body>
+</html>

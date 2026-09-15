@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Student Profile</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+:root {
+    --accent: #00ffcc;
+    --accent-dark: #007a66;
+    --card-border: #00ffcc44;
+    --card-shadow: #00ffcc22;
+}
+
+body.theme-purple {
+    --accent: #a855f7;
+    --accent-dark: #6b21a8;
+    --card-border: #a855f744;
+    --card-shadow: #a855f722;
+}
+body.theme-blue {
+    --accent: #3b82f6;
+    --accent-dark: #1e40af;
+    --card-border: #3b82f644;
+    --card-shadow: #3b82f622;
+}
+body.theme-red {
+    --accent: #f43f5e;
+    --accent-dark: #9f1239;
+    --card-border: #f43f5e44;
+    --card-shadow: #f43f5e22;
+}
+body.theme-gold {
+    --accent: #f59e0b;
+    --accent-dark: #b45309;
+    --card-border: #f59e0b44;
+    --card-shadow: #f59e0b22;
+}
+body.theme-green {
+    --accent: #10b981;
+    --accent-dark: #047857;
+    --card-border: #10b98144;
+    --card-shadow: #10b98122;
+}
+
+.profile-card {
+    position: relative;
+    margin-top: 70px;
+    background: rgba(0, 15, 25, 0.88);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 0 40px var(--card-shadow);
+}
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: bold;
+    color: #001a14;
+    margin: 0 auto 18px auto;
+    border: 3px solid var(--accent);
+    box-shadow: 0 0 20px var(--card-shadow);
+}
+
+.name {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(0, 255, 204, 0.12);
+    border: 1px solid #00ffcc55;
+    color: #ccffee;
+}
+
+.birthday-banner {
+    background: linear-gradient(90deg, #ff6b6b, #ff9f43);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: none;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.location {
+    font-size: 14px;
+    color: #7bbfad;
+    margin-bottom: 6px;
+}
+
+.views {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 13px;
+    color: #88cfc0;
+    background: rgba(0, 255, 204, 0.08);
+    border: 1px solid #00ffcc33;
+    padding: 6px 10px;
+    border-radius: 50px;
+}
+
+/* Like button - top right (mirrors views) */
+.like-corner {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #88cfc0;
+    background: rgba(0, 255, 204, 0.08);
+    border: 1px solid #00ffcc33;
+    padding: 4px 10px 4px 6px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.25s;
+    user-select: none;
+}
+
+.like-corner:hover {
+    background: rgba(255, 77, 109, 0.15);
+    border-color: #ff6b6b55;
+}
+
+.like-corner .like-btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #ffffff88;
+    line-height: 1;
+    padding: 0;
+    transition: 0.2s;
+}
+
+.like-corner.liked {
+    background: rgba(255, 77, 109, 0.18);
+    border-color: #ff4d6d66;
+    color: #ff8a9a;
+}
+
+.like-corner.liked .like-btn {
+    color: #ff4d6d;
+}
+
+.like-corner .like-count {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.last-seen {
+    font-size: 13px;
+    color: #88cfc0;
+    margin-bottom: 16px;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(0, 255, 204, 0.1);
+    border: 1px solid #00ffcc44;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.social-btn img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.social-btn:hover {
+    background: rgba(0, 255, 204, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px var(--card-shadow);
+}
+
+.bio-box {
+    background: rgba(0, 255, 204, 0.08);
+    border: 1px solid #00ffcc33;
+    border-radius: 16px;
+    padding: 18px 20px;
+    text-align: left;
+    color: #ccffee;
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 25px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    display: block;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 14px;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+    background: rgba(0, 255, 204, 0.12);
+    color: var(--accent);
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: rgba(0, 255, 204, 0.25);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid #555;
+    color: #aaa;
+}
+
+.version-badge {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(0, 255, 204, 0.12);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.loading {
+    margin-top: 150px;
+    color: #00ffcc;
+    font-size: 18px;
+}
+</style>
+</head>
+<body>
+
+<div class="version-badge">Version 3.1</div>
+
+<div id="loading" class="loading">Loading profile...</div>
+
+<div class="profile-card" id="profileCard" style="display:none;">
+    <!-- Views top-left -->
+    <div class="views" id="displayViews">👁️ 0 views</div>
+
+    <!-- Like top-right -->
+    <div class="like-corner" id="likeCorner" onclick="toggleLike()" title="Like">
+        <button class="like-btn" id="likeBtn" type="button">♡</button>
+        <span class="like-count" id="likeCount">0</span>
+    </div>
+
+    <div class="avatar" id="avatar">?</div>
+    
+    <div class="name" id="displayName">Student Name</div>
+    <div id="displayUsername" style="font-size:14px; color:#88cfc0; margin-bottom:10px;"></div>
+    
+    <div id="tagContainer"></div>
+
+    <div class="badges" id="badgesContainer"></div>
+
+    <div class="birthday-banner" id="birthdayBanner">🎉 Happy Birthday!</div>
+    
+    <div class="location" id="displayLocation">📍 Maldives</div>
+    
+    <div class="last-seen" id="displayLastSeen">Last seen recently</div>
+    
+    <div class="socials" id="socialsContainer"></div>
+    
+    <div class="bio-box" id="displayBio">No bio yet.</div>
+    
+    <div class="actions" id="actionButtons">
+        <a href="student list.html" class="btn btn-secondary">← Back to Student List</a>
+    </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { getFirestore, collection, query, where, getDocs, doc, updateDoc, increment, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCM2r1g5WZz7ksVFqqWVU-R8_SQtbq8wqc",
+  authDomain: "b3-portal.firebaseapp.com",
+  projectId: "b3-portal",
+  storageBucket: "b3-portal.firebasestorage.app",
+  messagingSenderId: "749208918769",
+  appId: "1:749208918769:web:21d6dac4803d26d005a750"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const urlParams = new URLSearchParams(window.location.search);
+const targetIndex = urlParams.get("index");
+
+if (!targetIndex) {
+  alert("No student selected");
+  window.location.href = "student list.html";
+}
+
+const birthdays = {
+  "20577": "15/03", "20452": "18/09", "22770": "29/03", "20453": "27/09",
+  "24050": "07/12", "21376": "07/12", "22242": "01/11", "20503": "25/12",
+  "21328": "18/12", "20504": "20/02", "20603": "11/05", "20492": "18/12",
+  "22885": "19/01", "20323": "13/01", "20393": "07/09", "20371": "29/03",
+  "20947": "12/06", "23285": "27/05", "20563": "16/09", "20490": "21/08",
+  "20410": "20/04", "23186": "21/04", "20397": "17/03", "23579": "07/08",
+  "20654": "25/02", "20387": "15/10", "20349": "13/10", "22205": "03/06",
+  "22351": "26/07", "21709": "17/07", "20472": "25/03", "24020": "04/08"
+};
+
+let profileOwnerUid = null;
+let currentUser = null;
+let likedBy = [];
+
+function timeAgo(date) {
+  if (!date) return "Last seen recently";
+  const seconds = Math.floor((new Date() - date) / 1000);
+  if (seconds < 60) return "Online just now";
+  if (seconds < 3600) return `Last seen ${Math.floor(seconds / 60)} min ago`;
+  if (seconds < 86400) return `Last seen ${Math.floor(seconds / 3600)} hour${Math.floor(seconds / 3600) > 1 ? "s" : ""} ago`;
+  if (seconds < 604800) return `Last seen ${Math.floor(seconds / 86400)} day${Math.floor(seconds / 86400) > 1 ? "s" : ""} ago`;
+  return `Last seen ${Math.floor(seconds / 604800)} week${Math.floor(seconds / 604800) > 1 ? "s" : ""} ago`;
+}
+
+function isBirthday(index) {
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, "0");
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  return birthdays[index] === `${day}/${month}`;
+}
+
+function applyTheme(theme) {
+  document.body.classList.remove("theme-purple", "theme-blue", "theme-red", "theme-gold", "theme-green");
+  if (theme && theme !== "default") {
+    document.body.classList.add(`theme-${theme}`);
+  }
+}
+
+function renderBadges(data) {
+  const container = document.getElementById("badgesContainer");
+  container.innerHTML = "";
+
+  if (data.index === "23285") {
+    container.innerHTML += `<div class="badge">👑 Developer</div>`;
+  }
+  if (isBirthday(data.index)) {
+    container.innerHTML += `<div class="badge">🎉 Birthday</div>`;
+  }
+  const views = data.views || 0;
+  if (views >= 10) {
+    container.innerHTML += `<div class="badge">👀 Popular</div>`;
+  }
+  const likes = (data.likedBy || []).length;
+  if (likes >= 5) {
+    container.innerHTML += `<div class="badge">❤️ Liked</div>`;
+  }
+  if (data.createdAt) {
+    const created = data.createdAt.toDate ? data.createdAt.toDate() : new Date(data.createdAt);
+    const daysSince = (new Date() - created) / (1000 * 60 * 60 * 24);
+    if (daysSince > 7) {
+      container.innerHTML += `<div class="badge">🥇 Early Member</div>`;
+    }
+  }
+}
+
+function renderLike() {
+  const corner = document.getElementById("likeCorner");
+  const btn = document.getElementById("likeBtn");
+  const countEl = document.getElementById("likeCount");
+  const count = likedBy.length;
+
+  countEl.textContent = count;
+
+  const hasLiked = currentUser && likedBy.includes(currentUser.uid);
+  if (hasLiked) {
+    corner.classList.add("liked");
+    btn.textContent = "♥";
+  } else {
+    corner.classList.remove("liked");
+    btn.textContent = "♡";
+  }
+}
+
+async function updateProfileViews(uid) {
+  const viewKey = `profile_viewed_${uid}`;
+  const hasViewed = localStorage.getItem(viewKey);
+  const userRef = doc(db, "users", uid);
+
+  try {
+    const snap = await getDoc(userRef);
+    let currentViews = snap.exists() && snap.data().views ? snap.data().views : 0;
+
+    if (!hasViewed) {
+      if (snap.exists()) {
+        await updateDoc(userRef, { views: increment(1) });
+        currentViews += 1;
+      } else {
+        await setDoc(userRef, { views: 1 }, { merge: true });
+        currentViews = 1;
+      }
+      localStorage.setItem(viewKey, "true");
+    }
+
+    document.getElementById("displayViews").textContent = `👁️ ${currentViews} view${currentViews !== 1 ? "s" : ""}`;
+  } catch (error) {
+    console.error(error);
+    document.getElementById("displayViews").textContent = "👁️ — views";
+  }
+}
+
+window.toggleLike = async function() {
+  if (!currentUser) {
+    alert("Please login to like this profile");
+    return;
+  }
+
+  if (currentUser.uid === profileOwnerUid) {
+    alert("You can't like your own profile");
+    return;
+  }
+
+  const userRef = doc(db, "users", profileOwnerUid);
+
+  try {
+    const snap = await getDoc(userRef);
+    const data = snap.data() || {};
+    let list = data.likedBy || [];
+
+    if (list.includes(currentUser.uid)) {
+      list = list.filter(uid => uid !== currentUser.uid);
+    } else {
+      list.push(currentUser.uid);
+    }
+
+    await updateDoc(userRef, { likedBy: list });
+    likedBy = list;
+    renderLike();
+
+  } catch (error) {
+    console.error(error);
+    alert("Error saving like");
+  }
+};
+
+async function loadProfile() {
+  try {
+    const q = query(collection(db, "users"), where("index", "==", targetIndex));
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+      document.getElementById("loading").textContent = "This student has not created a profile yet.";
+      return;
+    }
+
+    const docSnap = snapshot.docs[0];
+    const data = docSnap.data();
+    profileOwnerUid = docSnap.id;
+
+    applyTheme(data.theme || "default");
+
+    const names = data.fullname.trim().split(" ");
+    const initials = names.length >= 2 
+      ? names[0][0] + names[names.length - 1][0] 
+      : names[0][0];
+    document.getElementById("avatar").textContent = initials.toUpperCase();
+
+    document.getElementById("displayName").textContent = data.fullname;
+    document.getElementById("displayUsername").textContent = data.username ? "@" + data.username : "";
+
+    if (data.tag) {
+      document.getElementById("tagContainer").innerHTML = 
+        `<div class="tag" style="background:${data.tagColor || '#00ffcc'}">${data.tag}</div>`;
+    }
+
+    renderBadges(data);
+
+    if (isBirthday(targetIndex)) {
+      document.getElementById("birthdayBanner").style.display = "inline-block";
+    }
+
+    document.getElementById("displayLocation").textContent = 
+      data.location ? `📍 ${data.location}` : "📍 Maldives";
+
+    await updateProfileViews(profileOwnerUid);
+
+    let lastSeenDate = null;
+    if (data.lastSeen) {
+      lastSeenDate = data.lastSeen.toDate ? data.lastSeen.toDate() : new Date(data.lastSeen);
+    }
+    document.getElementById("displayLastSeen").textContent = timeAgo(lastSeenDate);
+
+    likedBy = data.likedBy || [];
+    renderLike();
+
+    document.getElementById("displayBio").textContent = data.bio || "No bio yet.";
+
+    const socialsDiv = document.getElementById("socialsContainer");
+    const socials = data.socials || {};
+    const order = data.socialOrder || ["discord", "instagram", "tiktok", "snapchat", "roblox"];
+
+    const logos = {
+      discord: "logos/discord.png",
+      instagram: "logos/instagram.png",
+      tiktok: "logos/tiktok.png",
+      snapchat: "logos/snapchat.png",
+      roblox: "logos/roblox.png"
+    };
+
+    order.forEach(platform => {
+      if (socials[platform]) {
+        const a = document.createElement("a");
+        a.className = "social-btn";
+        a.href = socials[platform];
+        a.target = "_blank";
+        a.title = platform.charAt(0).toUpperCase() + platform.slice(1);
+        a.innerHTML = `<img src="${logos[platform]}" alt="${platform}">`;
+        socialsDiv.appendChild(a);
+      }
+    });
+
+    document.getElementById("loading").style.display = "none";
+    document.getElementById("profileCard").style.display = "block";
+
+    onAuthStateChanged(auth, async (user) => {
+      currentUser = user;
+      renderLike();
+
+      if (user && user.uid === profileOwnerUid) {
+        await updateDoc(doc(db, "users", user.uid), {
+          lastSeen: new Date()
+        });
+
+        document.getElementById("actionButtons").innerHTML = `
+          <a href="profile.html" class="btn">Edit Profile</a>
+          <a href="student list.html" class="btn btn-secondary">← Back to Student List</a>
+        `;
+      }
+    });
+
+  } catch (error) {
+    console.error(error);
+    document.getElementById("loading").textContent = "Error loading profile.";
+  }
+}
+
+loadProfile();
+</script>
+
+</body>
+</html>

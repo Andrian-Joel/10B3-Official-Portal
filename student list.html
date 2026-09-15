@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Student List</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles linear infinite;
+}
+
+@keyframes floatParticles {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(20px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+.header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 40px 20px;
+    z-index: 10;
+}
+
+.header img.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+}
+
+.header .school-name {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 5px #00ffcc;
+}
+
+.header h1 {
+    margin-top: 15px;
+    font-size: 36px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+.search-box {
+    max-width: 380px;
+    margin: 0 auto 20px auto;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 50px;
+    border: 1px solid #00ffcc;
+    background: rgba(0, 255, 204, 0.08);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.search-box input::placeholder {
+    color: #88cfc0;
+}
+
+.admin-badge, .custom-tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    margin-left: 5px;
+    font-weight: bold;
+    color: black;
+}
+
+.online-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-left: 6px;
+    box-shadow: 0 0 6px #22c55e;
+    vertical-align: middle;
+}
+
+.class-info {
+    max-width: 900px;
+    margin: 20px auto 60px auto;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid #00ffcc33;
+    border-radius: 20px;
+    padding: 25px 30px;
+    text-align: center;
+    box-shadow: 0 0 20px #00ffcc22;
+    overflow-x: auto;
+}
+
+.class-info h2 {
+    margin-bottom: 15px;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #00ffcc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #00ffcc33;
+}
+
+th {
+    background: rgba(0,255,204,0.1);
+    color: #00ffcc;
+    position: sticky;
+    top: 0;
+}
+
+tbody tr:hover {
+    background: rgba(0,255,204,0.15);
+    cursor: pointer;
+}
+
+.male, .female {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+}
+.male { background: #007bff; }
+.female { background: #ff69b4; }
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background: rgba(0, 255, 204, 0.1);
+    color: #00ffcc;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 10px #00ffcc44;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(0, 255, 204, 0.25);
+    box-shadow: 0 0 20px #00ffcc88;
+    transform: translateY(-2px);
+}
+
+.profile-row td {
+    background: rgba(0, 255, 204, 0.08);
+    padding: 15px;
+}
+
+.view-profile-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: rgba(0, 255, 204, 0.15);
+    color: #00ffcc;
+    padding: 10px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    transition: 0.3s;
+}
+
+.view-profile-btn:hover {
+    background: rgba(0, 255, 204, 0.3);
+    box-shadow: 0 0 15px #00ffcc66;
+}
+
+.auth-buttons {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    background: rgba(0, 255, 204, 0.12);
+    color: #00ffcc;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 12px #00ffcc55;
+    transition: 0.3s;
+}
+
+.auth-buttons a:hover {
+    background: rgba(0, 255, 204, 0.25);
+    box-shadow: 0 0 20px #00ffcc88;
+}
+
+.version-badge {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(0, 255, 204, 0.12);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 13px;
+    font-weight: bold;
+    box-shadow: 0 0 12px #00ffcc55;
+}
+
+.footer {
+    margin-top: 80px;
+    padding: 25px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.45);
+    border-top: 1px solid #00ffcc33;
+    color: #ccffee;
+    font-size: 14px;
+}
+
+.footer .copyright {
+    color: #00ffcc;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    position: relative;
+    background: rgba(0, 255, 204, 0.1);
+    vertical-align: middle;
+}
+
+.help-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 20, 30, 0.95);
+    border: 1px solid #00ffcc;
+    color: #ccffee;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 0 12px #00ffcc44;
+}
+
+.help-icon:hover .help-tooltip,
+.help-icon.active .help-tooltip {
+    display: block;
+}
+
+.no-results {
+    padding: 30px;
+    color: #88cfc0;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<div class="version-badge">Version 3.1</div>
+<div class="auth-buttons" id="authButtons"></div>
+
+<!-- PARTICLES -->
+<div class="particle" style="width:12px; height:12px; top:20%; left:10%; background:#00ffcc; animation-duration:20s;"></div>
+<div class="particle" style="width:8px; height:8px; top:50%; left:80%; background:#00ffcc; animation-duration:15s;"></div>
+<div class="particle" style="width:10px; height:10px; top:70%; left:30%; background:#00ffcc; animation-duration:25s;"></div>
+<div class="particle" style="width:6px; height:6px; top:30%; left:60%; background:#00ffcc; animation-duration:18s;"></div>
+<div class="particle" style="width:14px; height:14px; top:10%; left:50%; background:#00ffcc; animation-duration:22s;"></div>
+<div class="particle" style="width:15px; height:15px; top:50%; left:40%; background:#00ffcc; animation-duration:20s;"></div>
+
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <p class="school-name">Aminiya School</p>
+    <h1>
+        10B3 Student List
+        <span class="help-icon" onclick="this.classList.toggle('active')">?
+            <span class="help-tooltip">Click on any student’s row to view their profile</span>
+        </span>
+    </h1>
+    <a href="index.html" class="back-btn">← Back to Main Page</a>
+</div>
+
+<div class="class-info">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search by name or index..." oninput="filterStudents()">
+    </div>
+
+    <h2>Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Register No</th>
+                <th>Name</th>
+                <th>Index No</th>
+                <th>Birth Date</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody id="studentTableBody">
+            <!-- Students will be rendered by JavaScript -->
+        </tbody>
+    </table>
+    <div id="noResults" class="no-results" style="display:none;">No students found</div>
+</div>
+
+<footer class="footer">
+    <div class="copyright">© 2026 10B3 Official Portal. All Rights Reserved.</div>
+    <div class="credits">Developed by Andrian Joel Cooray</div>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, query, where, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCM2r1g5WZz7ksVFqqWVU-R8_SQtbq8wqc",
+  authDomain: "b3-portal.firebaseapp.com",
+  projectId: "b3-portal",
+  storageBucket: "b3-portal.firebasestorage.app",
+  messagingSenderId: "749208918769",
+  appId: "1:749208918769:web:21d6dac4803d26d005a750"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const authButtons = document.getElementById("authButtons");
+
+const students = [
+  { num: "01", name: "Affan Fayaz", index: "20577", dob: "15/03/2010", gender: "male" },
+  { num: "02", name: "Aishath Aiza Ahmed", index: "20452", dob: "18/09/2010", gender: "female" },
+  { num: "03", name: "Aishath Insha Adam", index: "22770", dob: "29/03/2010", gender: "female" },
+  { num: "04", name: "Aishath Malak Fayaz", index: "20453", dob: "27/09/2010", gender: "female" },
+  { num: "05", name: "Aminath Aala Ali", index: "24050", dob: "07/12/2010", gender: "female" },
+  { num: "06", name: "Aminath Mishka Binth Abdulla Mohamed", index: "21376", dob: "07/12/2010", gender: "female" },
+  { num: "07", name: "Aym Ahmed Hameed", index: "22242", dob: "01/11/2010", gender: "female" },
+  { num: "08", name: "Eeshal Ahmed Akmal", index: "20503", dob: "25/12/2010", gender: "female" },
+  { num: "09", name: "Ensha Ahmed Sameer", index: "21328", dob: "18/12/2011", gender: "female" },
+  { num: "10", name: "Fathimath Laara Farish", index: "20504", dob: "20/02/2010", gender: "female" },
+  { num: "11", name: "Ibrahim Yashal Hussain", index: "20603", dob: "11/05/2010", gender: "male" },
+  { num: "12", name: "Izaan Abdul Azeez Abdul Latheef", index: "20492", dob: "18/12/2010", gender: "male" },
+  { num: "13", name: "Mariyam Manha Mufeed", index: "22885", dob: "19/01/2010", gender: "female" },
+  { num: "14", name: "Mohamed Azeen Zahir", index: "20323", dob: "13/01/2011", gender: "male" },
+  { num: "15", name: "Zara Mohamed Fahumy", index: "20393", dob: "07/09/2010", gender: "female" },
+  { num: "16", name: "Ahmed Shaamin", index: "20371", dob: "29/03/2010", gender: "male" },
+  { num: "17", name: "Ali Naaish Moosa", index: "20947", dob: "12/06/2010", gender: "male" },
+  { num: "18", name: "👑 Andrian Joel Cooray", index: "23285", dob: "27/05/2010", gender: "male" },
+  { num: "19", name: "Aylin Mausoom Saleem", index: "20563", dob: "16/09/2010", gender: "female" },
+  { num: "20", name: "Azan Ahmed Zameen", index: "20490", dob: "21/08/2010", gender: "male" },
+  { num: "21", name: "Daniya Abdul Qadir", index: "20410", dob: "20/04/2010", gender: "female" },
+  { num: "22", name: "Eelaaf Ali", index: "23186", dob: "21/04/2010", gender: "male" },
+  { num: "23", name: "Hussain Naizak", index: "20397", dob: "17/03/2010", gender: "male" },
+  { num: "24", name: "Ibrahim Raaif", index: "23579", dob: "07/08/2010", gender: "male" },
+  { num: "25", name: "Insha Irufaan Rahseed", index: "20654", dob: "25/02/2010", gender: "female" },
+  { num: "26", name: "Jiya Ahmed", index: "20387", dob: "15/10/2010", gender: "female" },
+  { num: "27", name: "Maal Ibrahim", index: "20349", dob: "13/10/2010", gender: "male" },
+  { num: "28", name: "Mohamed Silm Bin Fardheen", index: "22205", dob: "03/06/2010", gender: "male" },
+  { num: "29", name: "Mojil Maharjan", index: "22351", dob: "26/07/2011", gender: "male" },
+  { num: "30", name: "Raaniya Binthi Rafiq", index: "21709", dob: "17/07/2010", gender: "female" },
+  { num: "31", name: "Yameen Yoosuf Adam", index: "20472", dob: "25/03/2010", gender: "male" },
+  { num: "32", name: "Yazin Thariq Ahmed", index: "24020", dob: "04/08/2010", gender: "male" }
+];
+
+let tagMap = {};
+let onlineMap = {}; // index -> true/false
+
+function isOnline(lastSeen) {
+  if (!lastSeen) return false;
+  const date = lastSeen.toDate ? lastSeen.toDate() : new Date(lastSeen);
+  const diff = (new Date() - date) / 1000; // seconds
+  return diff < 180; // online if last seen within 3 minutes
+}
+
+async function loadStudentList() {
+  const tbody = document.getElementById("studentTableBody");
+  tbody.innerHTML = "";
+
+  const q = query(collection(db, "users"), where("accountType", "==", "student"));
+  const snapshot = await getDocs(q);
+
+  tagMap = {};
+  onlineMap = {};
+
+  snapshot.forEach(docSnap => {
+    const data = docSnap.data();
+    if (data.index) {
+      if (data.tag) {
+        tagMap[data.index] = {
+          tag: data.tag,
+          color: data.tagColor || "#00ffcc"
+        };
+      }
+      onlineMap[data.index] = isOnline(data.lastSeen);
+    }
+  });
+
+  renderStudents(students);
+}
+
+function renderStudents(list) {
+  const tbody = document.getElementById("studentTableBody");
+  const noResults = document.getElementById("noResults");
+  tbody.innerHTML = "";
+
+  if (list.length === 0) {
+    noResults.style.display = "block";
+    return;
+  }
+
+  noResults.style.display = "none";
+
+  list.forEach(student => {
+    const tr = document.createElement("tr");
+    tr.setAttribute("data-index", student.index);
+
+    let tagHTML = "";
+    if (tagMap[student.index]) {
+      const t = tagMap[student.index];
+      tagHTML = `<span class="custom-tag" style="background:${t.color}">${t.tag}</span>`;
+    }
+
+    const onlineHTML = onlineMap[student.index] 
+      ? `<span class="online-dot" title="Online"></span>` 
+      : "";
+
+    tr.innerHTML = `
+      <td>${student.num}</td>
+      <td>${student.name} ${tagHTML}${onlineHTML}</td>
+      <td>${student.index}</td>
+      <td>${student.dob}</td>
+      <td><span class="${student.gender}"></span></td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+
+  // Expandable rows
+  const rows = document.querySelectorAll("#studentTableBody tr[data-index]");
+  let currentlyOpen = null;
+
+  rows.forEach(row => {
+    row.addEventListener("click", function() {
+      const index = this.getAttribute("data-index");
+
+      if (currentlyOpen && currentlyOpen !== this) {
+        const next = currentlyOpen.nextElementSibling;
+        if (next && next.classList.contains("profile-row")) {
+          next.remove();
+        }
+      }
+
+      const nextRow = this.nextElementSibling;
+      if (nextRow && nextRow.classList.contains("profile-row")) {
+        nextRow.remove();
+        currentlyOpen = null;
+        return;
+      }
+
+      const newRow = document.createElement("tr");
+      newRow.className = "profile-row";
+      newRow.innerHTML = `
+        <td colspan="5">
+          <a href="view-profile.html?index=${index}" class="view-profile-btn">View Profile</a>
+        </td>
+      `;
+      this.after(newRow);
+      currentlyOpen = this;
+    });
+  });
+}
+
+window.filterStudents = function() {
+  const query = document.getElementById("searchInput").value.toLowerCase().trim();
+
+  if (!query) {
+    renderStudents(students);
+    return;
+  }
+
+  const filtered = students.filter(s => 
+    s.name.toLowerCase().includes(query) || 
+    s.index.includes(query)
+  );
+
+  renderStudents(filtered);
+};
+
+loadStudentList();
+
+// Update current user's lastSeen + Auth buttons
+onAuthStateChanged(auth, async (user) => {
+  if (user) {
+    // Mark current user as online
+    try {
+      await updateDoc(doc(db, "users", user.uid), {
+        lastSeen: new Date()
+      });
+    } catch (e) {
+      console.log("Could not update lastSeen");
+    }
+
+    authButtons.innerHTML = `<a href="#" id="logoutBtn">Logout</a>`;
+    document.getElementById("logoutBtn").addEventListener("click", async (e) => {
+      e.preventDefault();
+      await signOut(auth);
+      location.reload();
+    });
+  } else {
+    authButtons.innerHTML = `
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    `;
+  }
+});
+</script>
+
+</body>
+</html>

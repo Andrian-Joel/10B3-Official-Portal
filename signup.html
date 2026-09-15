@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Sign Up</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+    min-height: 100vh;
+}
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: floatParticles linear infinite;
+}
+@keyframes floatParticles {
+    0% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(-50px) translateX(20px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+.header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 30px 20px;
+    z-index: 10;
+}
+.header img.logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ffcc;
+}
+.header .school-name {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 5px #00ffcc;
+}
+.header h1 {
+    margin-top: 15px;
+    font-size: 32px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+.form-card {
+    max-width: 420px;
+    margin: 20px auto 60px auto;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    border: 1px solid #00ffcc33;
+    border-radius: 20px;
+    padding: 35px 30px;
+    text-align: center;
+    box-shadow: 0 0 25px #00ffcc22;
+}
+.form-card h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #00ffcc;
+}
+.account-type {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+.account-type label {
+    background: rgba(0, 255, 204, 0.08);
+    border: 1px solid #00ffcc55;
+    padding: 10px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+}
+.account-type input { display: none; }
+.account-type input:checked + label {
+    background: rgba(0, 255, 204, 0.25);
+    border-color: #00ffcc;
+    box-shadow: 0 0 12px #00ffcc55;
+}
+.input-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #ccffee;
+}
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 1px solid #00ffcc55;
+    background: rgba(0, 255, 204, 0.08);
+    color: white;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+.input-group input:focus {
+    border-color: #00ffcc;
+    box-shadow: 0 0 12px #00ffcc55;
+}
+.btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(0, 255, 204, 0.15);
+    color: #00ffcc;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+    box-shadow: 0 0 12px #00ffcc44;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn:hover {
+    background: rgba(0, 255, 204, 0.3);
+    box-shadow: 0 0 20px #00ffcc88;
+    transform: translateY(-2px);
+}
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+.switch-link, .back-link {
+    display: block;
+    margin-top: 18px;
+    color: #00ffcc;
+    text-decoration: none;
+    font-size: 14px;
+}
+.switch-link:hover, .back-link:hover {
+    text-shadow: 0 0 8px #00ffcc;
+}
+.message {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ff6b6b;
+}
+.student-only { display: none; }
+.help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 6px;
+    position: relative;
+    background: rgba(0, 255, 204, 0.1);
+    vertical-align: middle;
+}
+.help-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 20, 30, 0.95);
+    border: 1px solid #00ffcc;
+    color: #ccffee;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 0 12px #00ffcc44;
+}
+.help-icon:hover .help-tooltip,
+.help-icon.active .help-tooltip {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<div class="particle" style="width:12px; height:12px; top:20%; left:10%; background:#00ffcc; animation-duration:20s;"></div>
+<div class="particle" style="width:8px; height:8px; top:50%; left:80%; background:#00ffcc; animation-duration:15s;"></div>
+<div class="particle" style="width:10px; height:10px; top:70%; left:30%; background:#00ffcc; animation-duration:25s;"></div>
+<div class="particle" style="width:6px; height:6px; top:30%; left:60%; background:#00ffcc; animation-duration:18s;"></div>
+<div class="particle" style="width:14px; height:14px; top:10%; left:70%; background:#00ffcc; animation-duration:22s;"></div>
+
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <p class="school-name">Aminiya School</p>
+    <h1>10B3 Sign Up</h1>
+</div>
+
+<div class="form-card">
+    <h2>Create Account</h2>
+
+    <div class="account-type">
+        <input type="radio" id="typeStudent" name="accountType" value="student" checked onchange="toggleForm()">
+        <label for="typeStudent">I am a Student</label>
+
+        <input type="radio" id="typeGuest" name="accountType" value="guest" onchange="toggleForm()">
+        <label for="typeGuest">I am a Guest</label>
+    </div>
+
+    <div class="input-group">
+        <label>
+            Full Name
+            <span class="help-icon" id="nameHelp" onclick="this.classList.toggle('active')">?
+                <span class="help-tooltip" id="nameTooltip">Enter your full name exactly as listed in the Student List</span>
+            </span>
+        </label>
+        <input type="text" id="fullname" placeholder="Your full name">
+    </div>
+
+    <!-- Username (for everyone) -->
+    <div class="input-group">
+        <label>
+            Username
+            <span class="help-icon" onclick="this.classList.toggle('active')">?
+                <span class="help-tooltip">This will be shown in chat and on your profile</span>
+            </span>
+        </label>
+        <input type="text" id="username" placeholder="Choose a username (3-20 characters)" maxlength="20">
+    </div>
+
+    <div class="student-only" id="studentFields">
+        <div class="input-group">
+            <label>
+                Index Number
+                <span class="help-icon" onclick="this.classList.toggle('active')">?
+                    <span class="help-tooltip">Enter your official school Index Number</span>
+                </span>
+            </label>
+            <input type="text" id="index" placeholder="Your Index Number">
+        </div>
+
+        <div class="input-group">
+            <label>
+                Secret Code
+                <span class="help-icon" onclick="this.classList.toggle('active')">?
+                    <span class="help-tooltip">Enter the Secret Code you were given by the developer</span>
+                </span>
+            </label>
+            <input type="text" id="secret" placeholder="Your Secret Code">
+        </div>
+    </div>
+
+    <div class="input-group">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Your email">
+    </div>
+
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Create a password (min 6 characters)">
+    </div>
+
+    <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" id="confirm" placeholder="Confirm password">
+    </div>
+
+    <button class="btn" id="signupBtn" onclick="signup()">Sign Up</button>
+
+    <div class="message" id="message"></div>
+
+    <a href="login.html" class="switch-link">Already have an account? Login</a>
+    <a href="index.html" class="back-link">← Back to Main Page</a>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCM2r1g5WZz7ksVFqqWVU-R8_SQtbq8wqc",
+  authDomain: "b3-portal.firebaseapp.com",
+  projectId: "b3-portal",
+  storageBucket: "b3-portal.firebasestorage.app",
+  messagingSenderId: "749208918769",
+  appId: "1:749208918769:web:21d6dac4803d26d005a750"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const studentList = {
+  "Affan Fayaz":                          { index: "20577", secret: "X7K9P2" },
+  "Aishath Aiza Ahmed":                   { index: "20452", secret: "M4Q8R1" },
+  "Aishath Insha Adam":                   { index: "22770", secret: "T3W6Y9" },
+  "Aishath Malak Fayaz":                  { index: "20453", secret: "B2N5H8" },
+  "Aminath Aala Ali":                     { index: "24050", secret: "L9C4V7" },
+  "Aminath Mishka Binth Abdulla Mohamed": { index: "21376", secret: "P1J6K3" },
+  "Aym Ahmed Hameed":                     { index: "22242", secret: "R8F2D5" },
+  "Eeshal Ahmed Akmal":                   { index: "20503", secret: "G4H7S9" },
+  "Ensha Ahmed Sameer":                   { index: "21328", secret: "Y6T1M4" },
+  "Fathimath Laara Farish":               { index: "20504", secret: "Z3Q9B2" },
+  "Ibrahim Yashal Hussain":               { index: "20603", secret: "K5W8N1" },
+  "Izaan Abdul Azeez Abdul Latheef":      { index: "20492", secret: "V2C7L9" },
+  "Mariyam Manha Mufeed":                 { index: "22885", secret: "H8R3P6" },
+  "Mohamed Azeen Zahir":                  { index: "20323", secret: "D1F4T8" },
+  "Zara Mohamed Fahumy":                  { index: "20393", secret: "S9J2X5" },
+  "Ahmed Shaamin":                        { index: "20371", secret: "N6B3G7" },
+  "Ali Naaish Moosa":                     { index: "20947", secret: "Q4Y8W1" },
+  "Andrian Joel Cooray":                  { index: "23285", secret: "A9K2M7" },
+  "Aylin Mausoom Saleem":                 { index: "20563", secret: "C7P5R3" },
+  "Azan Ahmed Zameen":                    { index: "20490", secret: "F2L9H4" },
+  "Daniya Abdul Qadir":                   { index: "20410", secret: "T8M1V6" },
+  "Eelaaf Ali":                           { index: "23186", secret: "W3X7J9" },
+  "Hussain Naizak":                       { index: "20397", secret: "B5N2Q8" },
+  "Ibrahim Raaif":                        { index: "23579", secret: "K9R4D1" },
+  "Insha Irufaan Rahseed":                { index: "20654", secret: "P6H3Y7" },
+  "Jiya Ahmed":                           { index: "20387", secret: "L1T8C4" },
+  "Maal Ibrahim":                         { index: "20349", secret: "G7W2S5" },
+  "Mohamed Silm Bin Fardheen":            { index: "22205", secret: "Y4F9N3" },
+  "Mojil Maharjan":                       { index: "22351", secret: "R2J6B8" },
+  "Raaniya Binthi Rafiq":                 { index: "21709", secret: "X5Q1M9" },
+  "Yameen Yoosuf Adam":                   { index: "20472", secret: "H3V7K2" },
+  "Yazin Thariq Ahmed":                   { index: "24020", secret: "D8C4P6" }
+};
+
+window.toggleForm = function() {
+  const isStudent = document.getElementById("typeStudent").checked;
+  document.getElementById("studentFields").style.display = isStudent ? "block" : "none";
+
+  const tooltip = document.getElementById("nameTooltip");
+  if (isStudent) {
+    tooltip.textContent = "Enter your full name exactly as listed in the Student List";
+  } else {
+    tooltip.textContent = "Enter your name";
+  }
+};
+
+toggleForm();
+
+window.signup = async function() {
+  const isStudent = document.getElementById("typeStudent").checked;
+  const fullnameInput = document.getElementById("fullname").value.trim();
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+  const message = document.getElementById("message");
+  const btn = document.getElementById("signupBtn");
+
+  message.textContent = "";
+  btn.disabled = true;
+  btn.textContent = "Creating account...";
+
+  if (!fullnameInput || !username || !email || !password || !confirm) {
+    message.textContent = "Please fill in all required fields";
+    btn.disabled = false;
+    btn.textContent = "Sign Up";
+    return;
+  }
+
+  if (username.length < 3 || username.length > 20) {
+    message.textContent = "Username must be 3–20 characters";
+    btn.disabled = false;
+    btn.textContent = "Sign Up";
+    return;
+  }
+
+  if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+    message.textContent = "Username can only contain letters, numbers and underscore";
+    btn.disabled = false;
+    btn.textContent = "Sign Up";
+    return;
+  }
+
+  if (password !== confirm) {
+    message.textContent = "Passwords do not match";
+    btn.disabled = false;
+    btn.textContent = "Sign Up";
+    return;
+  }
+
+  if (password.length < 6) {
+    message.textContent = "Password must be at least 6 characters";
+    btn.disabled = false;
+    btn.textContent = "Sign Up";
+    return;
+  }
+
+  let index = "";
+  let secret = "";
+  let fullname = fullnameInput;
+
+  if (isStudent) {
+    index = document.getElementById("index").value.trim();
+    secret = document.getElementById("secret").value.trim().toUpperCase();
+
+    if (!index || !secret) {
+      message.textContent = "Please enter Index Number and Secret Code";
+      btn.disabled = false;
+      btn.textContent = "Sign Up";
+      return;
+    }
+
+    const matchedName = Object.keys(studentList).find(
+      name => name.toLowerCase() === fullnameInput.toLowerCase()
+    );
+
+    const student = matchedName ? studentList[matchedName] : null;
+
+    if (!student || student.index !== index || student.secret !== secret) {
+      message.textContent = "Name, Index Number or Secret Code is incorrect";
+      btn.disabled = false;
+      btn.textContent = "Sign Up";
+      return;
+    }
+
+    fullname = matchedName;
+
+    const indexDoc = await getDoc(doc(db, "indexes", index));
+    if (indexDoc.exists()) {
+      message.textContent = "This Index Number is already registered";
+      btn.disabled = false;
+      btn.textContent = "Sign Up";
+      return;
+    }
+  }
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    const userData = {
+      fullname: fullname,
+      username: username,
+      email: email,
+      accountType: isStudent ? "student" : "guest",
+      createdAt: new Date()
+    };
+
+    if (isStudent) {
+      userData.index = index;
+      userData.bio = "";
+      userData.tag = "";
+      userData.tagColor = "#00ffcc";
+      userData.socials = {
+        discord: "",
+        instagram: "",
+        tiktok: "",
+        snapchat: "",
+        roblox: ""
+      };
+      userData.socialOrder = ["discord", "instagram", "tiktok", "snapchat", "roblox"];
+
+      await setDoc(doc(db, "indexes", index), {
+        fullname: fullname,
+        email: email,
+        uid: user.uid,
+        accountType: "student",
+        createdAt: new Date()
+      });
+    }
+
+    await setDoc(doc(db, "users", user.uid), userData);
+
+    alert("Account created successfully!");
+    window.location.href = "index.html";
+
+  } catch (error) {
+    console.error(error);
+    if (error.code === "auth/email-already-in-use") {
+      message.textContent = "This email is already registered";
+    } else {
+      message.textContent = error.message;
+    }
+    btn.disabled = false;
+    btn.textContent = "Sign Up";
+  }
+};
+</script>
+
+</body>
+</html>

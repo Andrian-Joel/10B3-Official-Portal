@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10B3 Announcements</title>
+<link rel="icon" href="https://education.gov.mv/storage/img/schools/AS/AS.png" type="image/png">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #0a1f2e, #004d26, #061e2a, #0a1f2e);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.header {
+    text-align: center;
+    padding: 40px 20px 20px 20px;
+}
+
+.header img.logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #00ffcc;
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+.header h1 {
+    margin-top: 12px;
+    font-size: 28px;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto 60px auto;
+    padding: 0 20px;
+}
+
+.announcement {
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid #00ffcc33;
+    border-radius: 16px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+    backdrop-filter: blur(10px);
+}
+
+.announcement .date {
+    font-size: 13px;
+    color: #88cfc0;
+    margin-bottom: 6px;
+}
+
+.announcement .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00ffcc;
+    margin-bottom: 8px;
+}
+
+.announcement .content {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #ccffee;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    background: rgba(0, 255, 204, 0.1);
+    color: #00ffcc;
+    padding: 10px 22px;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 1px solid #00ffcc;
+}
+
+.version-badge {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: rgba(0, 255, 204, 0.12);
+    border: 1px solid #00ffcc;
+    color: #00ffcc;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.footer {
+    margin-top: auto;
+    padding: 25px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.45);
+    border-top: 1px solid #00ffcc33;
+    color: #ccffee;
+    font-size: 14px;
+}
+
+.loading {
+    text-align: center;
+    color: #00ffcc;
+    margin-top: 40px;
+}
+
+.empty {
+    text-align: center;
+    color: #88cfc0;
+    margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<div class="version-badge">Version 2.1</div>
+
+<div class="header">
+    <img src="https://education.gov.mv/storage/img/schools/AS/AS.png" class="logo">
+    <h1>Class Announcements</h1>
+    <a href="index.html" class="back-btn">← Back to Main Page</a>
+</div>
+
+<div class="container" id="announcementsContainer">
+    <div class="loading" id="loading">Loading announcements...</div>
+</div>
+
+<footer class="footer">
+    <div>© 2026 10B3 Official Portal. All Rights Reserved.</div>
+    <div style="font-size:12px; margin-top:6px;">Developed by Andrian Joel Cooray</div>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCM2r1g5WZz7ksVFqqWVU-R8_SQtbq8wqc",
+  authDomain: "b3-portal.firebaseapp.com",
+  projectId: "b3-portal",
+  storageBucket: "b3-portal.firebasestorage.app",
+  messagingSenderId: "749208918769",
+  appId: "1:749208918769:web:21d6dac4803d26d005a750"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadAnnouncements() {
+  const container = document.getElementById("announcementsContainer");
+  const loading = document.getElementById("loading");
+
+  try {
+    const q = query(collection(db, "announcements"), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(q);
+
+    loading.remove();
+
+    if (snapshot.empty) {
+      container.innerHTML = `<div class="empty">No announcements yet.</div>`;
+      return;
+    }
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const date = data.createdAt?.toDate ? data.createdAt.toDate() : new Date();
+      const dateStr = date.toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+
+      const div = document.createElement("div");
+      div.className = "announcement";
+      div.innerHTML = `
+        <div class="date">${dateStr}</div>
+        <div class="title">${data.title || "Announcement"}</div>
+        <div class="content">${data.content || ""}</div>
+      `;
+      container.appendChild(div);
+    });
+
+  } catch (error) {
+    console.error(error);
+    loading.textContent = "Error loading announcements.";
+  }
+}
+
+loadAnnouncements();
+</script>
+
+</body>
+</html>
